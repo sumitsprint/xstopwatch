@@ -12,11 +12,19 @@ function App() {
     const secs = totalSeconds % 60;
     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
    }
-   useEffect(() => {if(isRunning){
-    timerRef.current = setTimeout(() => {setSeconds(pre => pre + 1)}, 1000);
-   }
-  return ()  => clearTimeout(timerRef.current)
-  }, [ seconds, isRunning]);
+   useEffect(() => {
+  if (isRunning) {
+    const tick = () => {
+      setSeconds(prev => prev + 1);
+      timerRef.current = setTimeout(tick, 1000); // schedule next tick
+    };
+    timerRef.current = setTimeout(tick, 1000);
+  }
+  return () => {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+  };
+}, [isRunning]);
 
   return (
     
