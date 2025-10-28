@@ -1,42 +1,124 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ===== Dark Theme Tokens ===== */
+:root{
+  --bg:#0d1117;         /* page */
+  --panel:#161b22;      /* card */
+  --text:#f0f6fc;       /* primary text */
+  --muted:#8b949e;      /* secondary text */
+  --border:#30363d;     /* outlines */
+  --focus:#58a6ff;      /* focus ring */
+  --primary:#1f6feb;    /* primary button */
+  --primary-hover:#388bfd;
+  --danger:#da3633;     /* stop */
+  --danger-hover:#f85149;
+  --success:#238636;    /* start */
+  --success-hover:#2ea043;
+  --neutral:#30363d;    /* reset */
+  --neutral-hover:#3c4450;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== Page Canvas ===== */
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  display:grid;
+  place-items:center;
+  padding:32px;
+  box-sizing:border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* ===== App Card (your top-level <div>) ===== */
+body > div:first-of-type{
+  width:min(520px, 92vw);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:28px 26px 26px;
+  text-align:center;
 }
 
-.card {
-  padding: 2em;
+/* ===== Heading ===== */
+body > div:first-of-type > h1{
+  margin:0 0 16px 0;
+  font-weight:650;
+  font-size:1.8rem;
+  letter-spacing:.3px;
+  color:var(--text);
 }
 
-.read-the-docs {
-  color: #888;
+/* ===== Time Display ===== */
+body > div:first-of-type > p{
+  margin:10px 0 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size:2.4rem;
+  letter-spacing:.5px;
+  background:#0f1622;
+  border:1px solid var(--border);
+  border-radius:12px;
+  display:inline-block;
+  padding:10px 16px;
+  min-width: 180px;
+  box-shadow: inset 0 0 12px rgba(255,255,255,.04);
+}
+
+/* ===== Buttons (general) ===== */
+button{
+  color:#fff !important;
+  border:none !important;
+  border-radius:12px !important;
+  padding:11px 16px !important;
+  font-weight:700 !important;
+  font-size:1rem !important;
+  cursor:pointer !important;
+  transition:background .2s ease, transform .06s ease, box-shadow .2s ease !important;
+  box-shadow:0 6px 14px rgba(0,0,0,.25) !important;
+  margin-right:8px !important; /* keep your layout intention */
+}
+
+/* ===== Specific Buttons (overriding your inline backgroundColor) ===== */
+/* Start button had inline brown – make it success */
+button[style*="background-color: brown"]{
+  background:var(--success) !important;
+}
+button[style*="background-color: brown"]:hover{
+  background:var(--success-hover) !important;
+}
+
+/* Stop button had inline red – keep it danger */
+button[style*="background-color: red"]{
+  background:var(--danger) !important;
+}
+button[style*="background-color: red"]:hover{
+  background:var(--danger-hover) !important;
+}
+
+/* Reset button had inline blue – make it neutral/secondary to avoid competing with primary */
+button[style*="background-color: blue"]{
+  background:var(--neutral) !important;
+}
+button[style*="background-color: blue"]:hover{
+  background:var(--neutral-hover) !important;
+}
+
+/* Press feedback */
+button:active{
+  transform:scale(.98);
+}
+
+/* Focus ring (keyboard users) */
+button:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(88,166,255,.35) !important;
+}
+
+/* ===== Small-screen polish ===== */
+@media (max-width:420px){
+  body{padding:16px}
+  body > div:first-of-type{ padding:22px 18px 18px; }
+  body > div:first-of-type > p{ font-size:2rem; min-width:150px; }
+  button{ width:100%; margin:8px 0 !important; }
 }

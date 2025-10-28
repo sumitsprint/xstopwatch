@@ -26,14 +26,24 @@ function App() {
   };
 }, [isRunning]);
 
+
+
   return (
     
        <div>
       <h1>Stopwatch</h1>
       <p>Time: {formatTime(seconds)}</p>
 
-      {isRunning ? (<button onClick = {() => setIsRunning(false)} style = {{marginRight: "8px", backgroundColor: "blue"}}>Stop</button>) : (<button onClick={() => setIsRunning(true)} style = {{marginRight: "8px", backgroundColor: "blue"}}>Start</button>)}
-      <button onClick = {() => { clearTimeout(timerRef.current); setSeconds(0); setIsRunning(false);}} style = {{backgroundColor: "blue"}}>Reset</button>
+      {isRunning ? (<button onClick = {() => setIsRunning(false)} style = {{marginRight: "8px", backgroundColor: "red"}}>
+        Stop
+
+      </button>)
+       : (<button onClick={() => setIsRunning(true)} style = {{marginRight: "8px", backgroundColor: "brown"}}>
+        Start
+        </button>)}
+      <button onClick = {() => { clearTimeout(timerRef.current); setSeconds(0); setIsRunning(false);}} style = {{backgroundColor: "blue"}}>
+        Reset
+        </button>
     </div>
   )
 }
